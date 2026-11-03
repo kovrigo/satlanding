@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Smart As — Find your SAT starting point</title><link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+:root{--paper:#FBFAF4;--grid:#E6E5E0;--ink:#17171C;--text:#17171C;--muted:#4E4E58;--surface:#FFFFFF;--hl:#FFE03A;--hl-soft:#FFF2A8;--on-ink:#FFFFFF}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:28px}body{margin:0;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,color-mix(in srgb,var(--paper) 0%,var(--paper) 0.01%) 1px),linear-gradient(90deg,var(--grid) 1px,color-mix(in srgb,var(--paper) 0%,var(--paper) 0.01%) 1px);background-size:24px 24px;color:var(--text);font:17px/1.6 'Space Grotesk',sans-serif}a{color:inherit}button,input,select{font:inherit}button,a,input,select,summary{-webkit-tap-highlight-color:color-mix(in srgb,var(--paper) 0%,var(--paper) 0.01%)}button,a,summary{touch-action:manipulation}button{cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--hl);outline-offset:5px}.wrap{width:min(1200px,calc(100% - 96px));margin:auto}p{margin:0 0 18px}h1,h2,h3{color:var(--ink);margin:0;line-height:1.12}h1,h2,.logo,.try-label,.mock-score{font-family:'Permanent Marker',cursive;font-weight:400}h1{font-size:76px;letter-spacing:-3px;max-width:700px;line-height:1.12}h2{font-size:43px;max-width:810px}h3{font-size:23px;font-weight:700;line-height:1.3}.announce{background:var(--ink);color:var(--on-ink);font-size:14px;padding:10px 0}.announce .wrap{display:flex;justify-content:center;gap:22px}.announce a{font-weight:700;text-underline-offset:4px}.site-head{border-bottom:1px solid color-mix(in srgb,var(--ink) 22%,var(--paper))}.head-row{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:24px 0}.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:33px;white-space:nowrap}.logo svg{width:43px;height:43px}.nav{display:flex;gap:25px;align-items:center;font-size:14px;font-weight:500}.link{text-decoration:none}.link:hover{color:var(--ink);text-decoration:underline;text-underline-offset:6px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:13px 23px;border:2px solid var(--ink);border-radius:3px;color:var(--ink);font-size:16px;font-weight:700;text-decoration:none;line-height:1.35;background:var(--surface);box-shadow:3px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}.btn:hover{transform:translate(2px,2px);box-shadow:1px 2px 0 var(--ink)}.btn-primary{background:var(--ink);color:var(--on-ink);box-shadow:3px 4px 0 var(--ink);transform:rotate(-1deg)}.btn-small{font-size:14px;min-height:42px;padding:10px 16px}.btn-ghost{background:color-mix(in srgb,var(--paper) 0%,var(--paper) 0.01%);box-shadow:none;border-width:1.5px}.hero{padding:82px 0 76px}.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:75px;align-items:center;position:relative}.highlight{position:relative;isolation:isolate;white-space:nowrap}.highlight:before{content:"";position:absolute;left:-7px;right:-8px;bottom:9px;height:27px;background:var(--hl);opacity:.55;transform:rotate(-2deg);z-index:-1}.hero-lede{font-size:19px;max-width:570px;margin:28px 0}.hero-actions{display:flex;flex-wrap:wrap;gap:16px}.hero-actions .btn-ghost{padding-left:0;border:0;box-shadow:none;font-size:15px;text-decoration:underline;text-underline-offset:6px}.hero-meta{font-size:14px;color:var(--muted);margin:23px 0 0}.try{position:relative;background:var(--surface);padding:37px 32px 24px;transform:rotate(3deg);border:1.5px solid var(--ink);box-shadow:8px 9px 0 color-mix(in srgb,var(--ink) 10%,var(--paper));z-index:1}.try:before,.mock:before,.wl-card:before{content:"";position:absolute;top:-15px;left:35%;width:115px;height:30px;background:var(--hl-soft);transform:rotate(-7deg);border-left:3px dotted var(--paper);border-right:3px dotted var(--paper)}.try-label{font-size:28px;color:var(--ink);margin:0 0 22px;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:7px}.try-q{font-size:23px;margin-bottom:24px;font-weight:500}.try-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}.try-choice{display:flex;align-items:center;gap:18px;border:1px solid color-mix(in srgb,var(--ink) 26%,var(--surface));background:var(--surface);padding:10px 15px;color:var(--ink);border-radius:3px}.bubble{display:grid;place-items:center;width:31px;height:31px;border:1.5px solid var(--ink);border-radius:48% 53% 44% 52%;font-size:16px}.val{font-size:23px}.try-choice:hover{background:color-mix(in srgb,var(--ink) 6%,var(--surface))}.try-choice.is-right{background:var(--ink);color:var(--surface)}.is-right .bubble{border-color:var(--surface)}.try-choice.is-wrong{border:2px solid var(--hl)}.try-feedback{border-top:1px dashed color-mix(in srgb,var(--ink) 31%,var(--paper));margin:22px 0 0;padding-top:17px;font-size:14px;min-height:85px}.doodle{position:absolute;fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}.star{width:68px;right:-29px;top:-48px;transform:rotate(10deg)}.arrow{width:127px;left:49%;bottom:-25px;transform:rotate(-15deg)}.block{padding:70px 0;border-top:1px solid color-mix(in srgb,var(--ink) 16%,var(--paper))}.sec-head{margin-bottom:36px}.sec-head p{max-width:770px;margin:18px 0 0;color:var(--muted)}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:45px;counter-reset:step}.step{position:relative;padding:6px 0 0 58px;counter-increment:step}.step:before{content:counter(step);position:absolute;left:0;top:0;width:40px;height:43px;border:2px solid var(--ink);border-radius:47% 51% 42% 55%;font:29px 'Permanent Marker';text-align:center;color:var(--ink);transform:rotate(-8deg)}.step h3{margin-bottom:13px;font-size:21px}.step p{font-size:16px}.sheet{padding:24px 0 30px}.sheet-row{display:flex;gap:9px;justify-content:space-between}.sheet-bubble{width:34px;height:39px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:48% 45% 52% 44%;font-size:14px;color:var(--ink);background:repeating-linear-gradient(65deg,color-mix(in srgb,var(--ink) 7%,var(--paper)) 0px,color-mix(in srgb,var(--ink) 7%,var(--paper)) 2px,color-mix(in srgb,var(--paper) 0%,var(--paper) 0.01%) 2px,color-mix(in srgb,var(--paper) 0%,var(--paper) 0.01%) 4px);transform:rotate(-7deg)}.sheet-bubble.math{background:var(--hl);border-color:var(--hl);color:var(--text);transform:rotate(6deg)}.legend{display:flex;gap:30px;font-size:14px;margin-top:21px}.legend span{display:flex;align-items:center;gap:9px}.legend i{display:inline-block;width:13px;height:16px;border-radius:50%}.halves{display:grid;grid-template-columns:1fr 1fr;gap:60px}.half h3{padding:14px 0;border-bottom:3px solid var(--ink)}.half h3 small{float:right;font:14px 'Space Grotesk';margin-top:9px}.topic-list{padding:0;margin:0;list-style:none}.topic-list li{display:flex;justify-content:space-between;gap:15px;padding:18px 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 16%,var(--paper));font-weight:500}.topic-list em{display:block;font-size:14px;font-style:normal;color:var(--muted);font-weight:400;margin-top:4px}.topic-list li>span:last-child{font-family:'Permanent Marker';font-size:24px;color:var(--ink)}.features{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}.feature{border-top:3px solid var(--ink);padding-top:23px}.feature h3{font-size:21px;min-height:57px}.feature p{font-size:16px;margin:14px 0 0}.preview-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:90px;align-items:center}.check-list{list-style:none;padding:0;margin:0}.check-list li{padding:0 0 21px 32px;position:relative}.check-list li:before{content:'✓';position:absolute;left:0;color:var(--ink);font-size:25px;font-weight:700}.mock{background:var(--surface);border:1.5px solid var(--ink);position:relative;padding:30px;transform:rotate(-2deg);box-shadow:6px 7px 0 color-mix(in srgb,var(--ink) 10%,var(--paper))}.mock-score{font-size:62px;color:var(--ink)}.mock-score small{font:19px 'Space Grotesk'}.mock-sub{font-size:13px;color:var(--muted);border-bottom:1px dashed color-mix(in srgb,var(--ink) 37%,var(--surface));padding-bottom:18px}.bar-label{display:flex;justify-content:space-between;gap:12px;font-size:13px;margin-bottom:8px}.bar-label span:last-child{white-space:nowrap}.bar-row{margin-bottom:17px}.bar{height:12px;background:var(--grid)}.bar span{display:block;height:100%;background:var(--ink);clip-path:polygon(0 5%,100% 0,99% 90%,0 100%)}.bar.low span{background:var(--hl)}.mock-tip{font-size:14px;padding-top:15px;border-top:1px dashed color-mix(in srgb,var(--ink) 37%,var(--surface));margin:0}.plan{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}.phase{padding:23px 0 0;border-top:3px solid var(--ink)}.months{font-size:13px;font-weight:700;color:var(--ink)}.phase h3{font-size:22px;margin-bottom:13px;max-width:190px}.phase>p:last-child{font-size:16px}.btn-row{display:flex;flex-wrap:wrap;gap:20px}.event-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}.facts{display:grid;grid-template-columns:85px 1fr;gap:18px 15px;margin-top:30px;font-size:16px}.facts dt{font-weight:700;color:var(--ink)}.facts dd{margin:0}.wl-card{background:var(--surface);border:1.5px solid var(--ink);padding:32px;position:relative;box-shadow:6px 7px 0 color-mix(in srgb,var(--ink) 10%,var(--paper))}.wl-card h3{font:29px 'Permanent Marker';margin-bottom:14px}.wl-card>p{font-size:16px}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.f{display:flex;flex-direction:column;font-size:14px;font-weight:700;margin-bottom:17px;gap:7px}input,select{width:100%;min-width:0;height:47px;border:1px solid var(--ink);border-radius:2px;background:var(--paper);padding:8px;color:var(--text)}.wl-form .btn{width:100%}.form-error{color:var(--ink);font-weight:700;font-size:14px}.form-error:empty{display:none}.wl-mail{border-top:1px dashed color-mix(in srgb,var(--ink) 37%,var(--surface));margin-top:25px;padding-top:20px;font-size:13px}.wl-mail p{margin-bottom:14px}.wl-letter{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.65 'Space Grotesk';margin:0 0 18px;color:var(--muted)}.audience{display:grid;grid-template-columns:1fr 1fr;gap:80px}.aud{border-left:4px solid var(--hl);padding-left:26px}.aud h3{margin-bottom:16px}.aud p{margin:0}.faq{max-width:960px}details{border-bottom:1px solid color-mix(in srgb,var(--ink) 31%,var(--paper))}summary{cursor:pointer;padding:23px 40px 23px 0;font-size:21px;font-weight:500;color:var(--ink);position:relative;list-style:none}summary::-webkit-details-marker{display:none}summary:after{content:'+';position:absolute;right:4px;font-size:28px;top:17px}details[open] summary:after{content:'−'}details p{max-width:850px;margin:0 0 24px}.final{padding:45px;background:var(--ink);color:var(--on-ink);display:grid;grid-template-columns:1fr 300px;gap:45px;align-items:center;transform:rotate(-.6deg);box-shadow:7px 8px 0 var(--hl-soft)}.final h2{color:var(--on-ink);font-size:40px}.final p{margin:20px 0 0}.final .btn-row{flex-direction:column;align-items:stretch}.final .btn{background:var(--paper);color:var(--ink);box-shadow:none}.final .btn-ghost{background:color-mix(in srgb,var(--paper) 0%,var(--paper) 0.01%)}.site-foot{border-top:1px solid color-mix(in srgb,var(--ink) 22%,var(--paper));padding:40px 0}.foot-row{display:flex;justify-content:space-between;gap:60px}.foot-row>p{max-width:510px;font-size:13px;color:var(--muted);margin:0}.foot-row>div>p{margin:8px 0 0;font-size:15px}
+@media(min-width:1000px){.step p,.feature p,.phase>p:last-child,.facts,.wl-card>p{font-size:17px}}
+@media(max-width:1100px){.wrap{width:calc(100% - 64px)}.nav{gap:15px}.nav .link{font-size:12px}h1{font-size:60px}.hero-grid{gap:40px}.hero-actions{gap:9px}.sheet-row{gap:5px}.sheet-bubble{width:30px}.event-grid,.preview-grid{gap:45px}}
+@media(max-width:760px){.wrap{width:calc(100% - 40px)}.announce{font-size:11px;padding:10px 0}.announce .wrap{gap:4px;flex-direction:column;align-items:center}.head-row{padding:18px 0;gap:16px;flex-wrap:wrap}.logo{font-size:29px}.logo svg{width:35px;height:35px}.nav{width:100%;flex-wrap:wrap;justify-content:space-between;gap:12px 15px}.nav .link{font-size:12px}.nav .btn{position:absolute;right:20px;top:83px;font-size:11px;min-height:35px;padding:8px 10px}.hero{padding:47px 0 45px}.hero-grid{grid-template-columns:1fr;gap:52px}h1{font-size:49px;letter-spacing:-1.6px;max-width:345px}.highlight:before{height:19px;bottom:4px;left:-2px;right:-2px}.hero-lede{font-size:17px;margin:23px 0}.hero-actions{gap:13px}.hero-actions .btn-primary{width:100%}.hero-actions .btn-ghost{margin:auto;font-size:14px;min-height:35px}.hero-meta{font-size:12px;margin-top:15px;text-align:center}.try{transform:rotate(1.5deg);margin:0 6px;padding:29px 23px 22px}.try-q{font-size:21px}.star{width:43px;right:1px;top:400px;z-index:2}.arrow{display:none}.block{padding:45px 0}h2{font-size:33px}.sec-head{margin-bottom:28px}.sec-head p{font-size:16px}.steps,.halves,.features,.preview-grid,.plan,.event-grid,.audience{grid-template-columns:1fr;gap:28px}.step{padding-left:56px}.step p{margin-bottom:0}.sheet{padding:0 0 26px}.sheet-row{display:grid;grid-template-columns:repeat(13,1fr);gap:8px 3px}.sheet-bubble{width:100%;height:29px;font-size:11px}.legend{gap:9px;flex-direction:column;font-size:12px}.half h3{font-size:20px}.half h3 small{font-size:12px;margin-top:7px}.topic-list li{font-size:16px}.topic-list em{font-size:13px}.features{grid-template-columns:1fr 1fr;gap:25px 20px}.feature h3{font-size:18px;min-height:68px}.feature p{font-size:15px}.preview-grid{gap:30px}.mock{margin:0 6px;padding:24px}.bar-label{font-size:11px}.plan{gap:20px}.phase{padding-top:16px}.phase h3{max-width:none}.months{margin-bottom:7px}.phase p:last-child{margin:0}.btn-row .btn{width:100%;font-size:14px}.event-grid{gap:42px}.facts{font-size:15px;grid-template-columns:65px 1fr;gap:16px 12px}.wl-card{padding:24px 20px}.wl-card h3{font-size:25px}.wl-letter{font-size:11px}.audience{gap:30px}.aud{padding-left:19px}.aud p{font-size:16px}summary{font-size:18px;padding-top:20px;padding-bottom:20px}details p{font-size:16px}.final{grid-template-columns:1fr;padding:28px 23px;gap:25px;transform:none}.final h2{font-size:32px}.final p{font-size:16px}.final .btn-row{justify-self:stretch!important;width:100%}.foot-row{flex-direction:column;gap:25px}.foot-row>p{font-size:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+
+/* Ink drawings stay in the margins, outside the reading area. */
+.sec-head{position:relative}.margin-mark{position:absolute;width:90px;height:75px;right:0;top:-16px;transform:rotate(7deg);pointer-events:none}.sec-head:has(.margin-mark){padding-right:110px}
+.kid{position:absolute;width:165px;height:auto;pointer-events:none}.kid-hero{width:320px;right:18px;bottom:calc(100% - 13px);transform-origin:50% 100%;animation:lean 5s ease-in-out infinite}.hero{padding-top:300px}.hero-grid>.star{right:-30px;top:18px;width:48px}.kid-results{right:6px;bottom:calc(100% - 16px);width:232px}.preview-grid{padding-top:150px}.equation{right:277px;top:22px}.faq-head{min-height:200px;display:flex;align-items:center}.kid-thinking{right:10px;bottom:0;width:224px}.final{position:relative;margin-top:160px}.kid-final{right:36px;bottom:calc(100% - 10px);width:232px}.try:before,.mock:before,.wl-card:before{background:var(--hl-soft)}
+@keyframes lean{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}33%{transform:rotate(-2deg)}66%{transform:rotate(2deg)}}
+@media(hover:hover){.btn:hover,.sheet-bubble:hover{animation:wiggle .35s ease-in-out}.sheet-bubble{cursor:default}}
+@media(max-width:760px){.hero{padding-top:47px}.hero-grid{gap:195px}.kid-hero{width:184px;right:5px;bottom:calc(100% - 10px)}.hero-grid>.star{top:auto;bottom:365px;left:6px;right:auto;width:36px}.preview-grid{padding-top:0;gap:200px}.kid-results{width:200px}.margin-mark{width:58px;height:60px;top:-6px}.sec-head:has(.margin-mark){padding-right:65px}.equation{display:none}.faq-head{min-height:195px;padding-right:180px;align-items:flex-end}.kid-thinking{width:200px;right:0}.final{margin-top:145px}.kid-final{width:200px;right:16px}.final .btn-ghost{color:var(--on-ink)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style></head><body><div id="landing">
+<div class="announce"><div class="wrap"><span>Full-length practice SAT on Monday, November 30.</span><a href="#practice">Join the waitlist</a></div></div>
+<header class="site-head" id="siteHead">
+  <div class="wrap head-row">
+    <a class="logo" href="#top"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3 29 15 43 10 35 24 45 34 30 34 24 46 19 33 4 37 13 24 4 13 19 16Z" fill="currentColor"/><path d="m17 24 5 5 10-12" fill="none" stroke="var(--paper)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Smart As</a>
+    <nav class="nav" aria-label="Main">
+      <a class="link" href="#how">How it works</a>
+      <a class="link" href="#inside">What's on the test</a>
+      <a class="link" href="#practice">November 30 test</a>
+      <a class="link" href="#faq">Questions</a>
+      <a class="btn btn-primary btn-small" href="#" data-start>Take the free test</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Find your SAT <span class="highlight">starting point.</span></h1>
+        <p class="hero-lede">Answer 25 SAT-style questions in Reading &amp; Writing and Math. See what you already know, what trips you up, and which topics to practice first.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#" data-start>Start the free test</a>
+          <a class="btn btn-ghost" href="#practice">Join the November 30 waitlist</a>
+        </div>
+        <p class="hero-meta">25 questions, about 35 minutes. No account, no email.</p>
+      </div>
+
+      <svg class="doodle star" viewBox="0 0 100 100" aria-hidden="true"><path d="m48 4 9 32 34-14-20 29 24 19-34-3-5 29-15-28-32 14 20-30-25-15 33 1Z"/></svg><svg class="doodle arrow" viewBox="0 0 160 100" aria-hidden="true"><path d="M5 6C-2 73 95 91 143 41M117 44l29-8-3 30"/></svg><div class="try" aria-labelledby="tryTitle"><svg class="kid kid-hero" viewBox="0 0 200 195" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M76 105Q55 113 49 139L42 177Q87 189 141 177L136 136Q130 114 114 107L98 123Z" fill="var(--hl-soft)"/><path d="M76 108l-10 17 24 9 8-11 10 12 18-11-12-16M82 134l-2 21M112 135l3 18M68 176l5-19 40 1 8 19M49 163l-3 12M54 163l-2 13"/><path d="M62 48Q58 33 74 29L71 18 87 24Q91 9 104 13L100 26 119 19 116 31 136 29 129 44 141 48 132 62" fill="var(--hl-soft)"/><path d="M65 52Q56 68 65 83Q65 103 88 110Q112 115 128 94L132 61 121 45 111 52 100 41 88 52 80 43Z" fill="var(--paper)"/><path d="M63 70Q49 64 54 80L65 85M132 70Q144 65 139 80L129 85" fill="var(--paper)"/><circle cx="79" cy="70" r="16"/><circle cx="116" cy="69" r="16"/><path d="M95 68Q99 65 100 68M60 66l-5-2M133 65l6-3M97 76l-3 10 8 1M87 95q14 7 25-6M71 50l13-3M108 48l13 2"/><path d="M83 68v5M119 67v5" stroke-width="4"/><path d="M73 35l-6-4M84 18l-2-9M105 16q14-14 23-5"/><path d="M51 140Q29 148 29 175L63 180 76 176 74 169 45 164 58 150M133 139l15 22 21-1 5 7-6 7-31 3-17-23" fill="var(--paper)"/><path d="M61 171l-2 8M67 171l-2 8M157 166l2 8M163 166l2 7"/></svg>
+        <p class="try-label" id="tryTitle">Try one now</p>
+        <p class="try-q">If 5<i>x</i> − 3 = 22, what is <i>x</i>?</p>
+        <div class="try-choices" role="group" aria-label="Answer choices">
+          <button class="try-choice" data-v="A"><span class="bubble">A</span><span class="val">3</span></button>
+          <button class="try-choice" data-v="B"><span class="bubble">B</span><span class="val">4</span></button>
+          <button class="try-choice" data-v="C"><span class="bubble">C</span><span class="val">5</span></button>
+          <button class="try-choice" data-v="D"><span class="bubble">D</span><span class="val">6</span></button>
+        </div>
+        <p class="try-feedback" id="tryFeedback" aria-live="polite">Pick an answer. The full test explains every question like this.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <svg class="margin-mark plane" viewBox="0 0 120 90" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 43 105 12 67 75 49 53 105 12 39 47 43 69 51 56M9 68q16 20 31 7q10-13 0-15q-10-1-5 8"/></svg><h2>Three steps to a clear plan</h2>
+        <p>Less guessing about what to study. One short test shows you where your time will pay off.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Take the test</h3><p>12 Reading &amp; Writing questions, then 13 Math questions. Reading &amp; Writing gets 14 minutes and Math gets 21, 35 in total.</p></div>
+        <div class="step"><h3>Read your breakdown</h3><p>See your result by section and by topic, plus the right answer and a short explanation for every question.</p></div>
+        <div class="step"><h3>Practice where it counts</h3><p>Start with the two topics where you lost the most points. They're named at the top of your results.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="inside">
+    <div class="wrap">
+      <div class="sec-head">
+        <svg class="margin-mark math-mark" viewBox="0 0 120 90" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 41h30M16 41l-3 23M31 41v23M48 60l7 8 8-32h23M89 55l15-16M90 40l14 17M106 29q10-8 8 0l-7 8h9"/></svg><h2>What's on the test</h2>
+        <p>The same two sections and eight content areas as the digital SAT, in a compact version.</p>
+      </div>
+
+      <div class="sheet" aria-label="Answer sheet: questions 1 to 12 are Reading and Writing, 13 to 25 are Math">
+        <div class="sheet-row" id="sheetRow"><span class="sheet-bubble rw">1</span><span class="sheet-bubble rw">2</span><span class="sheet-bubble rw">3</span><span class="sheet-bubble rw">4</span><span class="sheet-bubble rw">5</span><span class="sheet-bubble rw">6</span><span class="sheet-bubble rw">7</span><span class="sheet-bubble rw">8</span><span class="sheet-bubble rw">9</span><span class="sheet-bubble rw">10</span><span class="sheet-bubble rw">11</span><span class="sheet-bubble rw">12</span><span class="sheet-bubble math">13</span><span class="sheet-bubble math">14</span><span class="sheet-bubble math">15</span><span class="sheet-bubble math">16</span><span class="sheet-bubble math">17</span><span class="sheet-bubble math">18</span><span class="sheet-bubble math">19</span><span class="sheet-bubble math">20</span><span class="sheet-bubble math">21</span><span class="sheet-bubble math">22</span><span class="sheet-bubble math">23</span><span class="sheet-bubble math">24</span><span class="sheet-bubble math">25</span></div>
+        <div class="legend">
+          <span><i style="background:color-mix(in srgb,var(--ink) 13%,var(--surface));border:2px solid var(--ink)"></i>Reading &amp; Writing, questions 1–12</span>
+          <span><i style="background:var(--hl)"></i>Math, questions 13–25</span>
+        </div>
+      </div>
+
+      <div class="halves">
+        <div class="half">
+          <h3>Reading &amp; Writing <small>12 questions</small></h3>
+          <ul class="topic-list">
+            <li><span>Craft &amp; Structure<em>Words in context, text purpose, comparing two texts</em></span><span>4</span></li>
+            <li><span>Information &amp; Ideas<em>Main ideas, evidence, reading tables, inferences</em></span><span>4</span></li>
+            <li><span>Standard English Conventions<em>Punctuation, agreement, sentence structure</em></span><span>2</span></li>
+            <li><span>Expression of Ideas<em>Transitions, using notes to make a point</em></span><span>2</span></li>
+          </ul>
+        </div>
+        <div class="half">
+          <h3>Math <small>13 questions</small></h3>
+          <ul class="topic-list">
+            <li><span>Algebra<em>Linear equations, systems, inequalities</em></span><span>4</span></li>
+            <li><span>Advanced Math<em>Quadratics, functions, exponential growth</em></span><span>4</span></li>
+            <li><span>Problem-Solving &amp; Data Analysis<em>Percents, rates, mean and median</em></span><span>3</span></li>
+            <li><span>Geometry &amp; Trigonometry<em>Right triangles, circles</em></span><span>2</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <svg class="margin-mark bolt" viewBox="0 0 120 90" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m64 8-34 39 23-1-6 35 41-48-25 4Z" fill="var(--hl-soft)"/><path d="m15 20 8 6M93 64l10 8M85 13l8-5"/></svg><h2>Feels like the real thing</h2>
+        <p>The format follows the digital SAT, so the first time you see it isn't on exam day.</p>
+      </div>
+      <div class="features">
+        <div class="feature"><h3>Short passages, one question each</h3><p>Every Reading &amp; Writing question has its own short text, shown beside the question.</p></div>
+        <div class="feature"><h3>Type-in math answers</h3><p>Some math questions have no choices. You type the number yourself, as on the real test.</p></div>
+        <div class="feature"><h3>Mark for review</h3><p>Flag a question you're unsure about and come back to it before you submit.</p></div>
+        <div class="feature"><h3>A visible clock</h3><p>Practice pacing with a timer. You can hide it, but it comes back for the last 5 minutes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap preview-grid">
+      <div>
+        <div class="sec-head" style="margin-bottom:28px">
+          <h2>What you see at the end</h2>
+          <p>Results appear right away, on the same page.</p>
+        </div>
+        <ul class="check-list">
+          <li><b>Your result by section.</b> How many you got right in Reading &amp; Writing and in Math.</li>
+          <li><b>All eight topics, weakest first.</b> So the list itself tells you what to work on.</li>
+          <li><b>Every answer explained.</b> Your answer, the correct one, and why.</li>
+          <li><b>Where to start.</b> Two topics to focus on this week.</li>
+        </ul>
+      </div>
+      <div class="mock" aria-label="Example of a results screen"><svg class="kid kid-results" viewBox="0 0 200 195" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M76 105Q55 113 49 139L42 177Q87 189 141 177L136 136Q130 114 114 107L98 123Z" fill="var(--hl-soft)"/><path d="M76 108l-10 17 24 9 8-11 10 12 18-11-12-16M82 134l-2 21M112 135l3 18M68 176l5-19 40 1 8 19M49 163l-3 12M54 163l-2 13"/><path d="M62 48Q58 33 74 29L71 18 87 24Q91 9 104 13L100 26 119 19 116 31 136 29 129 44 141 48 132 62" fill="var(--hl-soft)"/><path d="M65 52Q56 68 65 83Q65 103 88 110Q112 115 128 94L132 61 121 45 111 52 100 41 88 52 80 43Z" fill="var(--paper)"/><path d="M63 70Q49 64 54 80L65 85M132 70Q144 65 139 80L129 85" fill="var(--paper)"/><circle cx="79" cy="70" r="16"/><circle cx="116" cy="69" r="16"/><path d="M95 68Q99 65 100 68M60 66l-5-2M133 65l6-3M97 76l-3 10 8 1M87 95q14 7 25-6M71 50l13-3M108 48l13 2"/><path d="M83 68v5M119 67v5" stroke-width="4"/><path d="M73 35l-6-4M84 18l-2-9M105 16q14-14 23-5"/><path d="M52 137L29 119 38 87 32 77 25 86 17 121 47 154M131 139l19-22-6-30 7-12 8 7 4 40-23 34" fill="var(--paper)"/><path d="m27 90 9 3M146 91l11-2"/></svg>
+        <div class="mock-score">18 <small>of 25 correct</small></div>
+        <p class="mock-sub">Example result</p>
+        <div class="bar-row"><div class="bar-label"><span>Geometry &amp; Trigonometry</span><span>1 of 2</span></div><div class="bar low"><span style="width:50%"></span></div></div>
+        <div class="bar-row"><div class="bar-label"><span>Standard English Conventions</span><span>1 of 2</span></div><div class="bar low"><span style="width:50%"></span></div></div>
+        <div class="bar-row"><div class="bar-label"><span>Advanced Math</span><span>3 of 4</span></div><div class="bar"><span style="width:75%"></span></div></div>
+        <div class="bar-row"><div class="bar-label"><span>Craft &amp; Structure</span><span>4 of 4</span></div><div class="bar"><span style="width:100%"></span></div></div>
+        <p class="mock-tip"><b>Start here:</b> Geometry &amp; Trigonometry and Standard English Conventions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <svg class="margin-mark rocket" viewBox="0 0 120 90" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M46 55Q47 22 94 9q0 40-31 57ZM46 42 27 46l-7 23 25-8M76 56l-2 23-24 6 7-21M36 69l-13 13M42 76l-5 8"/><circle cx="75" cy="30" r="8"/></svg><h2>A year-long program, starting November 30</h2>
+        <p>The next group starts on November 30 with a full-length practice SAT. From there, checkpoint tests come more often as exam day gets closer, with focused practice on your weakest topics in between.</p>
+      </div>
+      <div class="plan">
+        <div class="phase"><p class="months">Months 1–3, from November 30</p><h3>Find your foundation</h3><p>A checkpoint test every month.</p></div>
+        <div class="phase"><p class="months">Months 4–6</p><h3>Build confidence</h3><p>A checkpoint every three weeks.</p></div>
+        <div class="phase"><p class="months">Months 7–9</p><h3>Close the gaps</h3><p>A checkpoint every two weeks.</p></div>
+        <div class="phase"><p class="months">Months 10–12</p><h3>Find your exam rhythm</h3><p>A full practice test every week.</p></div>
+      </div>
+      <div class="btn-row" style="margin-top:36px;align-items:center">
+        <a class="btn btn-primary" href="#practice">Join the November 30 waitlist</a>
+        <span style="color:var(--muted);font-size:16px">The first checkpoint is the full-length practice test.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="practice">
+    <div class="wrap event-grid">
+      <div>
+        <h2>Full-length practice SAT on November 30</h2>
+        <p style="margin-top:16px;color:var(--muted);font-size:19px">The free diagnostic shows where to start. The full test shows where you stand: a complete practice SAT in the digital format, with real timing and a detailed report.</p>
+        <dl class="facts">
+          <dt>Date</dt><dd>Monday, November 30, 2026</dd>
+          <dt>Format</dt><dd>Reading &amp; Writing and Math, in the structure of the digital SAT</dd>
+          <dt>Length</dt><dd>98 questions, about 2 hours 15 minutes, plus a 10-minute break</dd>
+          <dt>Where</dt><dd>Online, from home</dd>
+          <dt>Price</dt><dd>Free for the November group</dd>
+          <dt>You get</dt><dd>An estimated score range and a topic-by-topic report</dd>
+        </dl>
+      </div>
+      <div class="wl-card">
+        <h3>Pencil in November 30</h3>
+        <p>Seats are limited. We'll email you the details and your test link before November 30.</p>
+        <div data-wl="landing"><form class="wl-form" novalidate>
+    <div class="field-row">
+      <label class="f">First name<input name="name" autocomplete="given-name" required></label>
+      <label class="f">I am a<select name="role"><option value="student">Student</option><option value="parent">Parent</option></select></label>
+    </div>
+    <label class="f">Student's grade<select name="grade"><option value="">Choose</option><option>9</option><option>10</option><option>11</option><option>12</option><option value="other">Other</option></select></label>
+    <p class="form-error" role="alert"></p>
+    <button class="btn btn-primary" type="submit">Join the waitlist</button>
+  </form>
+  <div class="wl-mail">
+    <p>The button opens an email to <b>hello@bagira.study</b>. No mail app? Copy the letter and send it from your own email.</p>
+    <pre class="wl-letter" data-letter>To: hello@bagira.study
+Subject: Smart As: November 30 practice SAT waitlist
+
+Hello,
+
+Please add me to the waitlist for the full-length practice SAT on Monday, November 30.
+
+Name: (your first name)
+I am a: student
+Student's grade: not given
+
+Thank you.</pre>
+    <button class="btn btn-ghost btn-small wl-copy" type="button" data-copy>Copy</button>
+  </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head"><svg class="margin-mark grade-mark" viewBox="0 0 120 90" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M35 63 50 28l12 37M40 51l18 1M75 35v23M64 46h24M19 63C-7 8 104 3 104 49S22 91 17 53"/></svg><h2>Who it's for</h2></div>
+      <div class="audience">
+        <div class="aud"><h3>Students</h3><p>You're in grades 9–12 and thinking about the SAT. You don't need to have studied yet. The test shows what you already know, so you don't waste weeks on topics you've mastered.</p></div>
+        <div class="aud"><h3>Parents</h3><p>You want to know where your child stands before paying for a course or a tutor. The results page is easy to read together and shows which topics need attention.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="wrap">
+      <div class="sec-head faq-head"><svg class="margin-mark equation" viewBox="0 0 120 90" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"><path d="m10 35 16 20m-16 0 16-20m9 6h15m-15 7h15m12-13q17-6 12 5l-11 15h16M4 60l80-34M91 33h20L97 45l14 13H91"/></svg><h2>Questions</h2><svg class="kid kid-thinking" viewBox="0 0 200 195" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M76 105Q55 113 49 139L42 177Q87 189 141 177L136 136Q130 114 114 107L98 123Z" fill="var(--hl-soft)"/><path d="M76 108l-10 17 24 9 8-11 10 12 18-11-12-16M82 134l-2 21M112 135l3 18M68 176l5-19 40 1 8 19M49 163l-3 12M54 163l-2 13"/><path d="M62 48Q58 33 74 29L71 18 87 24Q91 9 104 13L100 26 119 19 116 31 136 29 129 44 141 48 132 62" fill="var(--hl-soft)"/><path d="M65 52Q56 68 65 83Q65 103 88 110Q112 115 128 94L132 61 121 45 111 52 100 41 88 52 80 43Z" fill="var(--paper)"/><path d="M63 70Q49 64 54 80L65 85M132 70Q144 65 139 80L129 85" fill="var(--paper)"/><circle cx="79" cy="70" r="16"/><circle cx="116" cy="69" r="16"/><path d="M95 68Q99 65 100 68M60 66l-5-2M133 65l6-3M97 76l-3 10 8 1M87 95q14 7 25-6M71 50l13-3M108 48l13 2"/><path d="M83 68v5M119 67v5" stroke-width="4"/><path d="M73 35l-6-4M84 18l-2-9M105 16q14-14 23-5"/><path d="M51 142q-9 21 8 26l62-1 12-15-10-7-54 4M129 139l-10-28-14-12-6 2 8 10-13-3-6 5 18 9 7 32" fill="var(--paper)"/><path d="M20 48q-2-17 12-17t4 21l-9 7v7M27 76v2M160 29q-2-10 8-10t2 15l-5 3v5M165 50v1"/></svg></div>
+      <div class="faq">
+        <details><summary>Is this the official SAT?</summary><p>No. These are original SAT-style questions written by our team. They follow the content areas of the digital SAT. We are not affiliated with College Board.</p></details>
+        <details><summary>Will I get an SAT score?</summary><p>Yes, an approximate score range for each section on the 200–800 scale, clearly marked as approximate, because 25 questions give only a rough estimate. You'll also see how many you got right in each topic, which is what you need to decide what to study.</p></details>
+        <details><summary>How long does it take?</summary><p>About 35 minutes: 14 minutes for Reading &amp; Writing and 21 minutes for Math.</p></details>
+        <details><summary>Can I use a calculator?</summary><p>Yes. A scientific calculator and a reference sheet are built into the Math section.</p></details>
+        <details><summary>Do I need to sign up?</summary><p>No. You don't need an account or an email address. Your answers stay in your browser.</p></details>
+        <details><summary>Can I take it again?</summary><p>Yes. Keep in mind the questions are the same, so a second attempt mostly measures what you remember from the explanations.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:24px 0 88px">
+    <div class="wrap">
+      <div class="final"><svg class="kid kid-final" viewBox="0 0 200 195" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M76 105Q55 113 49 139L42 177Q87 189 141 177L136 136Q130 114 114 107L98 123Z" fill="var(--hl-soft)"/><path d="M76 108l-10 17 24 9 8-11 10 12 18-11-12-16M82 134l-2 21M112 135l3 18M68 176l5-19 40 1 8 19M49 163l-3 12M54 163l-2 13"/><path d="M62 48Q58 33 74 29L71 18 87 24Q91 9 104 13L100 26 119 19 116 31 136 29 129 44 141 48 132 62" fill="var(--hl-soft)"/><path d="M65 52Q56 68 65 83Q65 103 88 110Q112 115 128 94L132 61 121 45 111 52 100 41 88 52 80 43Z" fill="var(--paper)"/><path d="M63 70Q49 64 54 80L65 85M132 70Q144 65 139 80L129 85" fill="var(--paper)"/><circle cx="79" cy="70" r="16"/><circle cx="116" cy="69" r="16"/><path d="M95 68Q99 65 100 68M60 66l-5-2M133 65l6-3M97 76l-3 10 8 1M87 95q14 7 25-6M71 50l13-3M108 48l13 2"/><path d="M83 68v5M119 67v5" stroke-width="4"/><path d="M73 35l-6-4M84 18l-2-9M105 16q14-14 23-5"/><path d="M51 140l-9 30 27 9 11-9-21-10M131 139l16 11 10-23-7-11 4-16q5-6 8 0l1 14 15 1q8 4 3 12l-8 12-8 30q-7 13-20 7l-22-16" fill="var(--paper)"/><path d="m163 115-6 12 15 5M169 119l12 3M167 125l11 3"/></svg>
+        <div>
+          <h2>Big goals start with a small step.</h2>
+          <p>Twenty-five questions today, a clear list of what to practice tomorrow.</p>
+        </div>
+        <div class="btn-row" style="justify-self:end">
+          <a class="btn" href="#" data-start>Start the free test</a>
+          <a class="btn btn-ghost" href="#practice" style="color:var(--on-ink);border-color:var(--on-ink)">Join the November 30 waitlist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-row">
+    <div>
+      <a class="logo" href="#top"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3 29 15 43 10 35 24 45 34 30 34 24 46 19 33 4 37 13 24 4 13 19 16Z" fill="currentColor"/><path d="m17 24 5 5 10-12" fill="none" stroke="var(--paper)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Smart As</a>
+      <p>Pencil in your next step.</p>
+    </div>
+    <p>Original SAT-style practice questions. Not an official SAT test; the score range is only an estimate. Not affiliated with College Board. SAT is a trademark of College Board.</p>
+  </div>
+</footer>
+</div>
+<script>const $=s=>document.querySelector(s);document.querySelectorAll(".try-choice").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".try-choice").forEach(b => b.classList.remove("is-right", "is-wrong"));
+    const ok = btn.dataset.v === "C";
+    btn.classList.add(ok ? "is-right" : "is-wrong");
+    if (!ok) document.querySelector('.try-choice[data-v="C"]').classList.add("is-right");
+    $("#tryFeedback").innerHTML = ok
+      ? "<strong>Correct.</strong> Add 3 to both sides to get 5<i>x</i> = 25, then divide by 5: <i>x</i> = 5."
+      : "<strong>Not quite. The answer is 5.</strong> Add 3 to both sides to get 5<i>x</i> = 25, then divide by 5.";
+  });
+});
+
+// Waitlist form. Submitting opens the visitor's mail app with a ready letter to hello@bagira.study.
+// Nothing is stored. The address and the letter stay visible under the button, with a Copy button.
+const WAITLIST_ADDRESS = "hello@bagira.study";
+const SUBJECT = "Smart As: November 30 practice SAT waitlist";
+
+
+function buildLetter({ name, role, grade, extra }) {
+  const lines = [
+    "Hello,",
+    "",
+    "Please add me to the waitlist for the full-length practice SAT on Monday, November 30.",
+    "",
+    `Name: ${name || "(your first name)"}`,
+    `I am a: ${role}`,
+    `Student's grade: ${grade || "not given"}`,
+  ];
+  if (extra) lines.push("", extra);
+  lines.push("", "Thank you.");
+  return lines.join("\n");
+}
+
+function mailtoHref(letter) {
+  return `mailto:${WAITLIST_ADDRESS}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(letter)}`;
+}
+
+const el=document.querySelector('[data-wl]');
+const f=el.querySelector('form'),pre=el.querySelector('[data-letter]'),err=el.querySelector('.form-error'),copyBtn=el.querySelector('[data-copy]');
+const letter=()=>buildLetter({name:f.elements.name.value.trim(),role:f.elements.role.value,grade:f.elements.grade.value});
+f.addEventListener('input',()=>{pre.textContent=`To: ${WAITLIST_ADDRESS}\nSubject: ${SUBJECT}\n\n${letter()}`});
+f.addEventListener('submit',e=>{e.preventDefault();if(!f.elements.name.value.trim()){err.textContent='Enter your first name.';f.elements.name.focus();return}err.textContent='';window.location.href=mailtoHref(letter())});
+copyBtn.addEventListener('click',async()=>{await navigator.clipboard.writeText(pre.textContent);copyBtn.textContent='Copied';setTimeout(()=>copyBtn.textContent='Copy',1500)});
+</script></body></html>
