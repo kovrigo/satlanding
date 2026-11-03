@@ -1,7 +1,7 @@
 // Waitlist form. Submitting opens the visitor's mail app with a ready letter to hello@bagira.study.
 // Nothing is stored. The address and the letter stay visible under the button, with a Copy button.
 export const WAITLIST_ADDRESS = "hello@bagira.study";
-const SUBJECT = "Pencil In: November 30 practice SAT waitlist";
+const SUBJECT = "Smart As: November 30 practice SAT waitlist";
 
 
 export function buildLetter({ name, role, grade, extra }) {

@@ -39,7 +39,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
 
 /* ---------- templates ---------- */
 function plainTop(right = "25-question diagnostic") {
-  return `<header class="top plain"><div class="wordmark">Pencil In</div><span class="sub">${right}</span></header>`;
+  return `<header class="top plain"><div class="wordmark">Smart As</div><span class="sub">${right}</span></header>`;
 }
 
 const DIRECTIONS = {
