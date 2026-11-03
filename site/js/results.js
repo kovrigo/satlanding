@@ -1,5 +1,6 @@
-// Results page: reads the submitted attempt, shows ranges, domains, weak spots and the review.
-import { QUESTIONS } from "./questions.js";
+// Results page: reads the submitted attempt, shows sections, domains, weak spots and the review.
+// Score ranges only for the full test: ten easy questions give no SAT score.
+import { QUESTIONS, TEST } from "./questions.js";
 import { peek, clear } from "./attempt.js";
 import { grade, isAnswered, isCorrect, answerText, correctText, questionLabel, rangeText, SECTION_NAMES } from "./score.js";
 import { mountWaitlist } from "./waitlist.js";
@@ -7,7 +8,7 @@ import { mountWaitlist } from "./waitlist.js";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const a = peek();
 if (!a || !a.submitted || !a.submitted.math) {
-  location.replace("/test/");
+  location.replace(TEST.testUrl);
 } else {
   show(a);
 }
@@ -17,7 +18,7 @@ function show(a) {
   const { rw, math } = g.sections;
   const secBlock = s => `<div class="bar-row"><div class="bar-label"><span>${s.name}</span><span>${s.correct} of ${s.count} correct</span></div>
     <div class="bar"><span style="width:${s.share * 100}%"></span></div>
-    <p class="range" style="margin-top:8px"><b>${rangeText(s)}</b> out of 800</p></div>`;
+    ${TEST.full ? `<p class="range" style="margin-top:8px"><b>${rangeText(s)}</b> out of 800</p>` : ""}</div>`;
 
   const weakHTML = g.allCorrect
     ? `<div class="start-here"><h3>Every question right</h3><p>Great start. There are no weak spots to name. A full-length practice SAT will tell you more about your pacing and the harder question types.</p></div>`
@@ -42,10 +43,10 @@ function show(a) {
     <h2>Your starting point</h2>
     ${timeNote}
     <div class="res-top">
-      <div class="res-score">${g.total} <small>of 25</small></div>
+      <div class="res-score">${g.total} <small>of ${QUESTIONS.length}</small></div>
       <div>${secBlock(rw)}${secBlock(math)}</div>
     </div>
-    <p class="note" style="margin-top:0">The score ranges are approximate. Twenty-five questions give only a rough guide to the 200–800 section scores.</p>
+    ${TEST.full ? `<p class="note" style="margin-top:0">The score ranges are approximate. Twenty-five questions give only a rough guide to the 200–800 section scores.</p>` : ""}
     ${weakHTML}
     <div class="res-section">
       <h3>By topic, weakest first</h3>
@@ -53,25 +54,28 @@ function show(a) {
     </div>
     <div class="next-step">
       <h3>Next step: the full-length practice SAT on November 30</h3>
-      <p>${g.allCorrect ? "You got every question right, so a complete practice SAT is the best next step." : "Twenty-five questions point you in a direction. A complete test shows where you stand."} Join the waitlist and your result goes into the email.</p>
-      <div class="wl-card"><div data-wl="results"></div></div>
+      ${TEST.full
+        ? `<p>${g.allCorrect ? "You got every question right, so a complete practice SAT is the best next step." : "Twenty-five questions point you in a direction. A complete test shows where you stand."} You're on the waitlist. We'll write to you before the test.</p>`
+        : `<p>${g.allCorrect ? "You got every question right, so a complete practice SAT is the best next step." : "Ten quick questions point you in a direction. A complete test shows where you stand."} Join the waitlist and your result goes into the email. We'll send you a longer 25-question diagnostic with an approximate score range.</p>
+      <div class="wl-card"><div data-wl="results"></div></div>`}
     </div>
     <div class="res-section">
       <h3>Every question, explained</h3>
       ${review}
     </div>
-    <p class="note">This diagnostic uses original SAT-style questions. The score ranges are approximate.</p>
+    <p class="note">This ${TEST.full ? "diagnostic" : "test"} uses original SAT-style questions.${TEST.full ? " The score ranges are approximate." : ""}</p>
     <div class="btn-row" style="margin-top:28px">
       <button class="btn btn-primary" id="retake">Retake the test</button>
       <a class="btn btn-ghost" href="/">Back to the home page</a>
     </div>`;
 
-  mountWaitlist(document.querySelector("[data-wl]"), () => {
-    const lines = ["My free diagnostic result (approximate):",
-      `${rw.name}: ${rangeText(rw)} (${rw.correct} of ${rw.count} correct)`,
-      `${math.name}: ${rangeText(math)} (${math.correct} of ${math.count} correct)`];
+  const wl = document.querySelector("[data-wl]");
+  if (wl) mountWaitlist(wl, () => {
+    const lines = ["My free quick test result:",
+      `${rw.name}: ${rw.correct} of ${rw.count} correct`,
+      `${math.name}: ${math.correct} of ${math.count} correct`];
     lines.push(g.allCorrect ? "Weak domains: none, all questions correct" : `Weak domains: ${g.weak.join("; ")}`);
     return lines.join("\n");
   });
-  document.querySelector("#retake").addEventListener("click", () => { clear(); location.href = "/test/"; });
+  document.querySelector("#retake").addEventListener("click", () => { clear(); location.href = TEST.testUrl; });
 }
