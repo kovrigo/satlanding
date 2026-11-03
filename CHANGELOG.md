@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2026-11-03: quick test
 
 - Landing test is now a 5-minute quick test: 10 easy questions, 5 Reading and Writing, 5 Math. Its result shows correct counts, no score range.
 - The 25-question diagnostic moves to `/full/`, for the email after sign-up. Each test keeps its own progress in the browser.
