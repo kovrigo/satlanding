@@ -9,7 +9,7 @@
 
 ## Files
 
-- `site/js/questions.js`: questions: section, domain, level, text, choices or typed answer, answer, explanation.
+- `site/js/questions.js`: questions: `sec`, `topic` (domain), `level`, `type`, `passage`, `prompt`, `choices`, `answer`, `explain`.
 - `site/js/attempt.js`: the attempt in localStorage, key `pencilin-attempt-v1`. Without localStorage it lives in `window.name` until the tab closes.
 - `site/js/test.js`: test screen: timer, navigator, flags, cross-out, typed answer, section submit.
 - `site/js/tools.js`: highlights and notes, reference sheet, calculator.
@@ -27,5 +27,6 @@
 - Weights: easy 1, medium 2, hard 3.
 - Section middle: 200 + 600 × weighted share correct, rounded to 10.
 - Shown range: middle ± 40, kept within 200–800, marked «approximately».
-- Total range: sum of the section ranges.
-- Weak spots: the domains with the lowest share correct.
+- Total: correct answers out of 25.
+- Domains: sorted weakest first.
+- Weak spots: up to two domains with the lowest share correct.
