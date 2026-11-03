@@ -7,4 +7,4 @@ Static landing page: plain HTML and CSS in `site/`, no build step.
 - Staging site: the board runs `.staging-site.json`'s command from branch `staging`.
 - Task test site: `paneweb up` runs `.paneweb.json`'s command.
 - The `<script>` in `site/index.html` loads the board's bug report widget on tailnet sites. Keep it in every page.
-- `build-html.ts`: `bun build-html.ts` writes `dist/pencil-in.html`, the whole site in one file that opens from disk.
+- `build-html.ts`: `bun build-html.ts` writes `dist/pencil-in.html`, the whole site in one file that opens from disk, fonts included. Building fetches the fonts from Google Fonts.

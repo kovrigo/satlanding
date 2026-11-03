@@ -19,8 +19,41 @@ async function bundle(entry: string) {
   return routes(await out.outputs[0].text());
 }
 
+// Google Fonts, embedded once in the shell so the file needs no network. Latin and Greek subsets only.
+const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36";
+const fontHrefs = new Set<string>();
+async function get(url: string, init?: RequestInit) {
+  const res = await fetch(url, init);
+  if (!res.ok) throw new Error(`${res.status} ${url}`);
+  return res;
+}
+// Variable fonts serve every weight from one file: one @font-face per file, with the weight range.
+async function fontCss(href: string) {
+  const css = await (await get(href, { headers: { "user-agent": UA } })).text();
+  const files = new Map<string, { block: string; weights: number[] }>();
+  for (const [, , block] of css.matchAll(/\/\* (latin|greek) \*\/\s*(@font-face \{[^}]*\})/g)) {
+    const url = block.match(/url\((https:[^)]+)\)/)![1], key = url + block.match(/font-style: (\w+)/)![1];
+    const w = Number(block.match(/font-weight: (\d+)/)![1]);
+    if (files.has(key)) files.get(key)!.weights.push(w); else files.set(key, { block, weights: [w] });
+  }
+  let out = "";
+  for (const { block, weights } of files.values()) {
+    const url = block.match(/url\((https:[^)]+)\)/)![1];
+    const data = Buffer.from(await (await get(url)).arrayBuffer()).toString("base64");
+    out += block.replace(url, `data:font/woff2;base64,${data}`)
+      .replace(/font-weight: \d+/, `font-weight: ${Math.min(...weights)} ${Math.max(...weights)}`) + "\n";
+  }
+  return out;
+}
+let fonts = "";
+
 async function page(html: string, css: string, entry: string) {
+  for (const href of html.matchAll(/<link href="(https:\/\/fonts\.googleapis\.com[^"]+)" rel="stylesheet">/g)) {
+    if (!fontHrefs.has(href[1])) { fontHrefs.add(href[1]); fonts += await fontCss(href[1].replaceAll("&amp;", "&")); }
+  }
   html = html
+    .replace(/<link rel="preconnect"[^\n]*\n/g, "")
+    .replace(/<link href="https:\/\/fonts[^\n]*\n/, "")
     .replace(/<script>if\(location\.hostname[^\n]*<\/script>\n/, "") // bug widget: tailnet sites only
     .replace(/<link rel="stylesheet" href="[^"]+">/, () => `<style>${css}</style>`)
     .replace(/<script type="module"[\s\S]*?<\/script>/, "");
@@ -41,6 +74,7 @@ const pages = {
 
 const shell = `<!doctype html>
 <meta charset="utf-8">
+<style>${fonts}</style>
 <script>
 var PAGES = ${JSON.stringify(pages).replaceAll("<", "\\u003c")};
 function pageOf(h) { return h === "#test" ? "test" : h === "#results" ? "results" : "home"; }
