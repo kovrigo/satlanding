@@ -1,5 +1,6 @@
 // Builds dist/pencil-in.html: the whole site in one file that opens from disk, no server.
-// Pages switch by hash (#test, #results, else home); a switch reloads the file so each page starts clean.
+// Pages switch in place: no reload, no navigation, so it also works in a sandboxed frame with no storage.
+// The hash (#test, #results, else home) only names the page for reload and the back button.
 import { join } from "node:path";
 import { mkdirSync, writeFileSync } from "node:fs";
 
@@ -16,7 +17,9 @@ const routes = (s: string) => s
 async function bundle(entry: string) {
   const out = await Bun.build({ entrypoints: [entry], format: "iife", minify: true });
   if (!out.success) throw new AggregateError(out.logs, `Bundle failed: ${entry}`);
-  return routes(await out.outputs[0].text());
+  return routes((await out.outputs[0].text())
+    .replace(/location\.href="\/(test|results)\/"/g, '__go("$1")')
+    .replace(/location\.replace\("\/(test|results)\/"\)/g, '__go("$1")'));
 }
 
 // Google Fonts, embedded once in the shell so the file needs no network. Latin and Greek subsets only.
@@ -72,15 +75,37 @@ const pages = {
   results: await page(await read("results/index.html"), await read("styles.css"), join(site, "js/results.js")),
 };
 
+const json = (v: unknown) => JSON.stringify(v).replaceAll("<", "\\u003c");
 const shell = `<!doctype html>
 <meta charset="utf-8">
-<style>${fonts}</style>
 <script>
-var PAGES = ${JSON.stringify(pages).replaceAll("<", "\\u003c")};
+var PAGES = ${json(pages)}, FONTS = ${json(fonts)};
+// Timers of the page on screen, cleared when another page replaces it.
+var timers = [], st = setTimeout, si = setInterval;
+window.setTimeout = function () { var id = st.apply(window, arguments); timers.push(id); return id; };
+window.setInterval = function () { var id = si.apply(window, arguments); timers.push(id); return id; };
 function pageOf(h) { return h === "#test" ? "test" : h === "#results" ? "results" : "home"; }
-var current = pageOf(location.hash);
-addEventListener("hashchange", function () { if (pageOf(location.hash) !== current) location.reload(); });
-document.open(); document.write(PAGES[current]); document.close();
+var current;
+function show(p) {
+  current = p;
+  document.write(PAGES[p]);
+  var f = document.createElement("style"); f.textContent = FONTS; document.head.prepend(f);
+  // document.open drops every listener, so these go back on with each page.
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]"), h = a && a.getAttribute("href");
+    if (h === "#test" || h === "#results" || h === "#home") { e.preventDefault(); __go(h.slice(1)); }
+  }, true);
+  addEventListener("popstate", function () { if (pageOf(location.hash) !== current) __go(pageOf(location.hash), true); });
+}
+function __go(p, fromHistory) {
+  st(function () {
+    timers.forEach(clearTimeout); timers = [];
+    if (!fromHistory) try { history.pushState(null, "", p === "home" ? location.pathname + location.search : "#" + p); } catch (e) {}
+    document.open(); show(p); document.close();
+    scrollTo(0, 0);
+  });
+}
+show(pageOf(location.hash));
 </script>
 `;
 mkdirSync(join(import.meta.dir, "dist"), { recursive: true });
