@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-04
+
+- New brand Smart As: a black and yellow landing with «smart kid» drawings. Same sections, same text.
+- Result page in the Smart As style. The test keeps its Bluebook look, with Smart As in the header.
+- Waitlist letter subject: «Smart As: November 30 practice SAT waitlist».
+- You can now send the whole site as one HTML file that opens from disk: `bun scripts/export-html.ts <out.html>`.
+
 ## 2026-11-03
 
 - Landing from the Pencil In design.
