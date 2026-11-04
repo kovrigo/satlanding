@@ -16,6 +16,8 @@
 .nav .link,.nav .btn{white-space:nowrap}@media(max-width:1000px){.logo{font-size:27px}.logo svg{width:34px;height:34px}.head-row{gap:16px}.nav{gap:12px}}@media(min-width:761px) and (max-width:880px){.nav{gap:9px}.nav .link{font-size:11px}.nav .btn{padding:8px 11px;font-size:12px}}
 @media(max-width:760px){.hero-grid>.try{padding-top:84px;margin-top:0}.nav{flex-wrap:nowrap;gap:8px}.nav .link{font-size:11px}.hero-grid>.star{display:none}.sheet-bubble.rw+.sheet-bubble.math{grid-column:1}.hero-grid>div:first-child{margin-top:0}}
 @media(max-width:379px){.nav{flex-wrap:wrap;gap:10px 14px}h1{font-size:41px}}
+/* The phone header button sits on the logo row, measured from the header, not the page. */
+@media(max-width:760px){.head-row{position:relative}.nav .btn{top:24px;right:0}}@media(max-width:349px){.logo{font-size:24px}.logo svg{width:29px;height:29px}}
 /* Result page: the score, topics, waitlist and every question explained. */
 .lede{font-size:17px;margin:16px 0 0}
 .res-top{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;background:var(--surface);border:1.5px solid var(--ink);padding:32px;margin:28px 0 24px;box-shadow:6px 7px 0 color-mix(in srgb,var(--ink) 10%,var(--paper))}

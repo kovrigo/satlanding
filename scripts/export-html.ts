@@ -31,7 +31,8 @@ async function bundle(code: string, dir: string) {
   });
   if (!r.success) throw new AggregateError(r.logs, "Bundling failed.");
   // Same-page navigation (Retake on the test page) must reload too: a hash set to itself fires no hashchange.
-  return routes(await r.outputs[0].text()).replace(/location\.href\s*=\s*("#\/[^"]*")/g, "__go($1)");
+  // Bun marks each module with its path relative to the cwd; drop those, they leak the build machine's folders.
+  return routes((await r.outputs[0].text()).replace(/^\/\/ \S+\.js\n/gm, "")).replace(/location\.href\s*=\s*("#\/[^"]*")/g, "__go($1)");
 }
 
 const fonts = new Set<string>();
