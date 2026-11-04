@@ -1,15 +1,17 @@
 // The test screen: start, two timed sections, Check Your Work, section break. Look follows docs/designs/test-screen-mockup.html (option A).
-import { QUESTIONS } from "./questions.js";
+import { QUESTIONS, TEST } from "./questions.js";
 import * as At from "./attempt.js";
 import { selectionIn, addHighlight, applyHighlights, makeDraggable, REFERENCE_HTML, mountCalculator } from "./tools.js";
 import { isAnswered, LETTERS } from "./score.js";
 
 const SEC = {
-  rw: { title: "Section 1: Reading and Writing", name: "Reading and Writing", limit: 14 * 60000 },
-  math: { title: "Section 2: Math", name: "Math", limit: 21 * 60000 },
+  rw: { title: "Section 1: Reading and Writing", name: "Reading and Writing", limit: TEST.minutes.rw * 60000 },
+  math: { title: "Section 2: Math", name: "Math", limit: TEST.minutes.math * 60000 },
 };
-const WARN_MS = 5 * 60000;
+const WARN_MS = TEST.warnMinutes * 60000;
 const qsOf = sec => QUESTIONS.filter(q => q.sec === sec);
+const minutes = n => `${n} minute${n === 1 ? "" : "s"}`;
+const lastMinutes = TEST.warnMinutes === 1 ? "the last minute" : `the last ${TEST.warnMinutes} minutes`;
 const $ = s => document.querySelector(s);
 const app = $("#app");
 const calcPanel = $("#calc"), refPanel = $("#ref"), noteBox = $("#noteBox"), overlay = $("#overlay"), dialog = $("#dialog");
@@ -38,7 +40,7 @@ const answered = q => isAnswered(q, a);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 /* ---------- templates ---------- */
-function plainTop(right = "25-question diagnostic") {
+function plainTop(right = `${QUESTIONS.length}-question ${TEST.full ? "diagnostic" : "quick test"}`) {
   return `<header class="top plain"><div class="wordmark">Smart As</div><span class="sub">${right}</span></header>`;
 }
 
@@ -135,8 +137,8 @@ function view() {
     return plainTop() + `<div class="center"><div class="break-content start">
       <h2>Before you start</h2>
       <ul class="rules">
-        <li><b>Two sections.</b> Reading and Writing: 12 questions, 14 minutes. Then Math: 13 questions, 21 minutes. 35 minutes in total.</li>
-        <li><b>The timer always runs.</b> You can hide it, but it comes back for the last 5 minutes. When time runs out, your section is submitted with the answers you entered.</li>
+        <li><b>Two sections.</b> Reading and Writing: ${qsOf("rw").length} questions, ${minutes(TEST.minutes.rw)}. Then Math: ${qsOf("math").length} questions, ${minutes(TEST.minutes.math)}. ${minutes(TEST.minutes.rw + TEST.minutes.math)} in total.</li>
+        <li><b>The timer always runs.</b> You can hide it, but it comes back for ${lastMinutes}. When time runs out, your section is submitted with the answers you entered.</li>
         <li><b>Tools.</b> Mark questions for review and cross out answers with ABC. Highlight and add notes in reading passages. In Math, use the scientific calculator and the reference sheet.</li>
         <li><b>No going back.</b> You can move between questions inside a section. After you submit a section, you can't return to it.</li>
         <li><b>Progress is saved</b> in this browser. If you close the tab, come back and the clock keeps counting.</li>
@@ -147,13 +149,13 @@ function view() {
     return plainTop() + `<div class="center"><div class="break-content"><div class="checkmark">✓</div>
       <h2>Reading and Writing submitted.</h2>
       ${a.timeUp.rw ? `<p class="detail up">Time ran out, so this section was submitted automatically.</p>` : ""}
-      <p>Next: Math — 13 questions, 21 minutes.</p><p class="detail">Calculator and reference sheet available.</p>
+      <p>Next: Math — ${qsOf("math").length} questions, ${minutes(TEST.minutes.math)}.</p><p class="detail">Calculator and reference sheet available.</p>
       <button class="primary" data-act="startmath">Start Math</button></div></div>` + bottom("", "");
   }
   if (sc === "done") {
     return plainTop() + `<div class="center"><div class="break-content"><div class="checkmark">✓</div>
       <h2>You have finished the test.</h2><p>Your results are ready.</p>
-      <div class="two"><a class="primary" href="/results/">See your results</a><button class="back" data-act="retake">Retake the test</button></div></div></div>` + bottom("", "");
+      <div class="two"><a class="primary" href="${TEST.resultsUrl}">See your results</a><button class="back" data-act="retake">Retake the test</button></div></div></div>` + bottom("", "");
   }
   const sec = curSec(), list = qsOf(sec), q = curQ(), idx = list.indexOf(q) + 1;
   const pill = `<button class="navtoggle" data-act="nav" aria-expanded="${ui.navOpen}">Question ${sc === "review" ? list.length : idx} of ${list.length} ${ui.navOpen ? "⌄" : "⌃"}</button>`;
@@ -198,7 +200,7 @@ function updateTimer() {
   t.classList.toggle("warn", forced);
   b.textContent = hide ? "◷ Show" : "Hide";
   b.disabled = forced;
-  b.title = forced ? "The timer stays visible for the last 5 minutes" : "";
+  b.title = forced ? `The timer stays visible for ${lastMinutes}` : "";
 }
 
 /* ---------- timer ---------- */
@@ -218,7 +220,7 @@ function timeUp(sec) {
   dialog.innerHTML = `<h2>Time's up</h2><p>${sec === "rw" ? "Your Reading and Writing answers were submitted." : "Your Math answers were submitted."}</p>`;
   overlay.hidden = false;
   render();
-  setTimeout(() => { overlay.hidden = true; if (sec === "math") location.href = "/results/"; }, 2200);
+  setTimeout(() => { overlay.hidden = true; if (sec === "math") location.href = TEST.resultsUrl; }, 2200);
 }
 
 function submitSection(sec, byTimer) {
@@ -248,7 +250,7 @@ const actions = {
     ui.navOpen = false;
     At.save(); render();
   },
-  retake() { At.clear(); location.href = "/test/"; },
+  retake() { At.clear(); location.href = TEST.testUrl; },
   dir() { ui.dirOpen = !ui.dirOpen; ui.hlOpen = false; render(true); },
   hl() { ui.hlOpen = !ui.hlOpen; ui.dirOpen = false; render(true); },
   "hl-item"(el) {
@@ -298,7 +300,7 @@ const actions = {
   submit() {
     const sec = curSec();
     submitSection(sec, false);
-    if (sec === "math") location.href = "/results/"; else render();
+    if (sec === "math") location.href = TEST.resultsUrl; else render();
   },
 };
 

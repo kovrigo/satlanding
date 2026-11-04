@@ -3,9 +3,14 @@
 ## 2026-11-04
 
 - New brand Smart As: a black and yellow landing with «smart kid» drawings. Same sections, same text.
-- Result page in the Smart As style. The test keeps its Bluebook look, with Smart As in the header.
+- Result pages of both tests in the Smart As style. The test keeps its Bluebook look, with Smart As in the header.
 - Waitlist letter subject: «Smart As: November 30 practice SAT waitlist».
-- You can now send the whole site as one HTML file that opens from disk: `bun scripts/export-html.ts <out.html>`.
+- You can now send the landing, the quick test and its result as one HTML file that opens from disk: `bun scripts/export-html.ts <out.html>`.
+
+## 2026-11-03: quick test
+
+- Landing test is now a 5-minute quick test: 10 easy questions, 5 Reading and Writing, 5 Math. Its result shows correct counts, no score range.
+- The 25-question diagnostic moves to `/full/`, for the email after sign-up. Each test keeps its own progress in the browser.
 
 ## 2026-11-03
 

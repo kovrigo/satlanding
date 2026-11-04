@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="robots" content="noindex">
+<title>Smart As — SAT diagnostic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=Source+Serif+4:wght@400;500&display=swap" rel="stylesheet">
+<script>if(location.hostname.endsWith(".ts.net"))document.head.append(Object.assign(document.createElement("script"),{src:"https://grieving-orange.tail9feca9.ts.net:8446/widget.js",defer:true}))</script>
+<link rel="stylesheet" href="/test/test.css">
+</head>
+<body>
+<div id="app"></div>
+
+<aside class="panel calc" id="calc" tabindex="-1" aria-label="Calculator" hidden>
+  <div class="panel-title"><span>⠿ &nbsp; Calculator</span><button type="button" data-close aria-label="Close calculator">×</button></div>
+  <div id="calcBody"></div>
+</aside>
+<aside class="panel reference" id="ref" aria-label="Reference sheet" hidden>
+  <div class="panel-title"><span>Reference</span><button type="button" data-close aria-label="Close reference">×</button></div>
+  <div class="panel-scroll" id="refBody"></div>
+</aside>
+<div class="note" id="noteBox" hidden>
+  <div class="note-label">Note on highlighted text</div>
+  <textarea rows="3" aria-label="Note" placeholder="Add a note (optional)"></textarea>
+  <div class="note-actions"><button type="button" data-note="save">Save</button><button type="button" data-note="delete">Delete</button></div>
+</div>
+<div class="overlay" id="overlay" hidden><div class="dialog" id="dialog" role="alertdialog" aria-live="assertive"></div></div>
+
+<script type="module" src="/js/test.js"></script>
+</body>
+</html>

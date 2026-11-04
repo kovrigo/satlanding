@@ -1,7 +1,10 @@
 // The student's attempt, kept in localStorage under one key. If storage throws, the attempt lives in memory
 // (and is mirrored to window.name so a page change in the same tab, test -> results, does not lose it).
 // Two tabs: the last opened tab owns the attempt. A tab id is written into the attempt on open and on every save.
-export const KEY = "pencilin-attempt-v1";
+// Each test (quick, full) keeps its own attempt under its own key.
+import { TEST } from "./questions.js";
+export const KEY = TEST.key;
+const NAME = KEY + ":";
 export const tabId = Math.random().toString(36).slice(2) + Date.now().toString(36);
 
 let mem = null;
@@ -37,7 +40,7 @@ function readRaw() {
   if (storageOk) {
     try { const r = localStorage.getItem(KEY); return r ? JSON.parse(r) : null; } catch { return null; }
   }
-  try { return window.name.startsWith("pencilin:") ? JSON.parse(window.name.slice(9)) : null; } catch { return null; }
+  try { return window.name.startsWith(NAME) ? JSON.parse(window.name.slice(NAME.length)) : null; } catch { return null; }
 }
 
 // Read the stored attempt (null if none). Does not claim the attempt for this tab.
@@ -66,13 +69,13 @@ export function save() {
   if (storageOk) {
     try { localStorage.setItem(KEY, s); return; } catch { /* keep in memory */ }
   }
-  window.name = "pencilin:" + s;
+  window.name = NAME + s;
 }
 
 export function clear() {
   mem = null;
   try { localStorage.removeItem(KEY); } catch {}
-  if (window.name.startsWith("pencilin:")) window.name = "";
+  if (window.name.startsWith(NAME)) window.name = "";
 }
 
 // Called when another tab takes the attempt. This tab stops saving.
