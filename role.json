@@ -3,7 +3,10 @@
     "login": "kovrigo",
     "server": "grieving-orange-21ed"
   },
-  "running": null,
+  "running": {
+    "login": "kovrigo",
+    "server": "grieving-orange-21ed"
+  },
   "by": "kovrigo",
   "at": "2026-11-10T08:48:49.093Z"
 }
